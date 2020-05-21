@@ -17,3 +17,4 @@ def index(request):
     else:
         form = SignUpForm()
     return render(request, 'register/index.html', {'form': form})
+
