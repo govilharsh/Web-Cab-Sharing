@@ -16,3 +16,8 @@ body{
 label.control-label {
     font-family: 'cursive';
 }
+
+
+.navbar-toggler.toggler-example {
+    color:#212121;
+}

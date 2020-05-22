@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-
-from register.forms import SignUpForm
+from django.views import generic
+from .forms import SignUpForm
 
 
 def index(request):
@@ -22,3 +22,9 @@ def index(request):
 
 def homepage(request):
     return render(request, 'register/homepage.html', {})
+
+class IndexView(generic.ListView):
+    template_name = 'register/userhome.html'
+
+    def get_queryset(self):
+        return
