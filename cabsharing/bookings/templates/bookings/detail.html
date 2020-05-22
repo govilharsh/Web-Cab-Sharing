@@ -1,13 +1,7 @@
 <h1>{{ booking.id }}</h1>
 <h3>{{ booking.creator }}</h3>
 
-
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-<h1> Here are all your bookings</h1>
     <ul>
-        {% for booking in object_list %}
         <li> {{ booking.creator }}</li>
         <li> {{ booking.date }}
         <li> {{ booking.time }}</li>
@@ -15,5 +9,4 @@
         <li> {{ booking.destination }}</li>
         <li> {{ booking.max_numbers }}</li>
         <li> {{ booking.creator }}</li>
-        {% endfor %}
     </ul>

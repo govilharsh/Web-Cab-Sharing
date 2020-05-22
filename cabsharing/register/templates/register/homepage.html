@@ -39,7 +39,8 @@
                 <div class="row" id="form-border">
                     <div class="col-12">
                         <h4 class="texty">Login</h4>
-                        <form id="login-form" method="post">
+                        <form id="login-form" action="{% url %}" method="post">
+                            {% csrf_token %}
                           <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -49,8 +50,9 @@
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1">
                           </div>
-
-                          <button type="submit" class="btn btn-primary">Login</button>
+                            <a href="{% url 'bookings:index'%}">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </a>
                         </form>
                     </div>
                 </div>

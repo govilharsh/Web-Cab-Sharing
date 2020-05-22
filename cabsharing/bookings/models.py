@@ -2,13 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import  timezone
 from django.shortcuts import redirect
+from django.urls import reverse
 
 
-GENDER = [
-    ('all', 'all'),
-    ('girls only', 'girls only'),
-    ('boys only', 'boys only')
-]
+
 
 
 class Bookings(models.Model):
@@ -18,13 +15,20 @@ class Bookings(models.Model):
     date = models.DateField(blank=False, auto_now=False, auto_now_add=False, default='2019-6-14')
     start_position = models.CharField(max_length=30, blank=False)
     destination = models.CharField(max_length=30, blank=False)
-    max_members = models.PositiveIntegerField(default=4, blank=False, help_text='maximum number of members includes you as well.')
-    gender = models.CharField(default='both', max_length=20, choices=GENDER)
+    max_members = models.PositiveIntegerField(default=4, blank=False, help_text='Including you.')
     description = models.CharField(blank=True, null=True, max_length=100)
 
     def __str__(self):
-        return self.creator + '-' + self.destination + '-' + self.time + '-' + self.date
-
+        return self.creator
 
     def get_absolute_url(self):
-        return redirect('index')
+        return redirect('bookings:detail', kwargs={'pk': self.pk})
+
+
+class Member(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='member_users', null=True)
+    booking = models.ForeignKey('Bookings', on_delete=models.CASCADE, related_name='members')
+    name = models.CharField(max_length=90)
+
+    def get_absolute_url(self):
+        return reverse('index')
