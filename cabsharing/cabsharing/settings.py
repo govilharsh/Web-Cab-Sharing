@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'crispy_forms',
     'django.contrib.staticfiles',
     'register',
+    'accounts',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,4 +125,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = '/homepage/'
+LOGIN_REDIRECT_URL = '/'
