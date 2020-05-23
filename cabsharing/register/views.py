@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.views import generic
 from .forms import SignUpForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def index(request):
@@ -31,6 +33,11 @@ def homepage(request):
             user = authenticate(request.POST)
             if user is not None:
                 login(request, user)
-                return redirect('accounts/profile')
+                return redirect('user_dashboard')
    #     form = SignUpForm()
     return render(request, 'register/homepage.html', {})
+
+
+@login_required()
+def user_dashboard(request):
+    return render(request, 'register/dashboard.html', {})
