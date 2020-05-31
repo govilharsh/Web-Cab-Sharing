@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', include('register.urls')),
     path('', include('django.contrib.auth.urls')),
-    #path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
     #path('accounts/', include('django.contrib.auth.urls')),
     path('', auth_views.LoginView.as_view(template_name='register/homepage.html'), name='user_login'),
     path('bookings/', include('bookings.urls')),

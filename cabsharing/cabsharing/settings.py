@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bookings.apps.BookingsConfig',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -28,7 +29,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django.contrib.staticfiles',
     'register',
-    'accounts',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

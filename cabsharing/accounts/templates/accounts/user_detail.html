@@ -1,4 +1,4 @@
-{% extends '/base.html' %}
+{% extends 'register/base.html' %}
 
 
 {% block title %}
@@ -12,7 +12,7 @@ Profile
   <div class="card mx-auto" style='width: 30rem;'>
     <img class='card-img-top' src="{{user.userprofile.profile_pic.url}}" alt="none">
     <div class="card-img-overlay">
-      <button type="button" class="close modal-close ml-auto" data-dismiss="modal" aria-label="Close"><a href="{% url 'index' %}"><span style="text-color:white;" aria-hidden="true">×</span></a></button>
+      <button type="button" class="close modal-close ml-auto" data-dismiss="modal" aria-label="Close"><a href="{% url 'register:user_dashboard' %}"><span style="text-color:white;" aria-hidden="true">×</span></a></button>
 
     </div>
     <div class="card-body">
@@ -21,8 +21,7 @@ Profile
       </div>
       <div class="card-text">
         <h6>Email: {{user.email}}</h6>
-        <h6>Hostel: {{user.userprofile.hostel}}</h6>
-        <br>
+          <br>
         </div>
 
 
@@ -30,7 +29,8 @@ Profile
   </div>
   <br>
   <div class="text-center">
-    <!-- <a href="{% url 'accounts:user_update' pk=user.pk %}" class=' btn btn-warning'>Update profile_pic</a> -->
+      <a href="{% url 'accounts:user_update' pk=user.pk %}" class=' btn btn-info'>Update profile</a>
+    <a href="{% url 'accounts:user_update' pk=user.pk %}" class=' btn btn-info'>Update profile_pic</a>
   </div>
 
 </div>
