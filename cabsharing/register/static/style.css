@@ -1,5 +1,5 @@
 body{
-    background: white url("images/background.png");
+    background-color: #39CCCC;
 }
 
 
@@ -20,4 +20,9 @@ label.control-label {
 
 .navbar-toggler.toggler-example {
     color:#212121;
+}
+
+
+.card {
+    min-height: 200px;
 }

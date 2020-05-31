@@ -19,3 +19,12 @@ class MemberForm(forms.ModelForm):
     class Meta:
         model = Member
         fields = []
+
+
+class FilterForm(forms.Form):
+    start_position=forms.CharField(label='From:', required=False)
+    destination=forms.CharField(label='To:', required=False )
+    date=forms.DateField(label='Date:' ,required=False ,widget=forms.DateInput(attrs={'placeholder':'yyyy-mm-dd'}),)
+    time=forms.TimeField(label='Time:',required=False, widget=forms.TimeInput(attrs={'placeholder':'00:00'}), help_text='24-hours format')
+#    gender=forms.ChoiceField(label='Group open to:', choices=GENDER ,required=False)
+

@@ -5,9 +5,6 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 
-
-
-
 class Bookings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users', null=True)
     creator = models.CharField(max_length=30, blank=False)
@@ -22,7 +19,7 @@ class Bookings(models.Model):
         return self.creator
 
     def get_absolute_url(self):
-        return redirect('bookings:detail', kwargs={'pk': self.pk})
+        return redirect('register:user_dashboard', kwargs={'pk': self.pk})
 
 
 class Member(models.Model):

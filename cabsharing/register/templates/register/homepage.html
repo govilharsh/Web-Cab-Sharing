@@ -8,15 +8,12 @@
    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="{% static 'homepagestyle.css' %}"/>
-
 {% load crispy_forms_tags %}
-
 
 </head>
 <body>
     <!-- Image and text -->
 <nav class="navbar navbar-dark bg-dark">
-
     <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
                 <span class="icon-bar"></span>
@@ -27,7 +24,6 @@
         </div>
 </nav>
 
-
     <div class="container">
         <div class="row">
             <div class="col-5">
@@ -37,22 +33,19 @@
             </div>
             <div class="col-5 " >
                 <div class="row" id="form-border">
-                    <div class="col-12">
-
+                    <div class="col-12" id="pad">
                         <h4 class="texty">Login</h4>
                         <form id="from-group"  method="post">
                             {% csrf_token %}
                             {{ form|crispy }}
                             {% if field.help_text %}
                               <small style="color: grey">{{ field.help_text }}</small>
-                              {% endif %}
-                              {% for error in field.errors %}
+                            {% endif %}
+                            {% for error in field.errors %}
                               <p style="color: red">{{ error }}</p>
-                              {% endfor %}
-
+                            {% endfor %}
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>
-
 
                     </div>
                 </div>
@@ -72,12 +65,9 @@
         </div>
     </div>
 
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
 
 </body>
 </html>
