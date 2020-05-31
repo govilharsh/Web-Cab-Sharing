@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
 from django.views import generic
-from .models import Bookings
+from .models import Bookings, Member
 from braces.views import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
@@ -80,27 +80,28 @@ def filter(request):
 
 @login_required
 def leave_group(request, pk):
-    booking=get_object_or_404(Bookings, pk=pk)
-    if request.method=='POST':
-        form=MemberForm(request.POST)
+    booking = get_object_or_404(Bookings, pk=pk)
+    if request.method == 'POST':
+        form = MemberForm(request.POST)
         if form.is_valid():
             try:
-                member=booking.members.get(name=request.user.username)
+                member = booking.members.get(name=request.user.username)
                 member.delete()
                 messages.success(request,  "Booking left successfully! ")
-                return redirect('index')
+                return redirect('register:user_dashboard')
             except Member.DoesNotExist:
                 messages.success(request,  "You are <strong> not</strong> a member of this Booking ")
-                return redirect('index')
+                return redirect('register:user_dashboard')
     else:
         form=MemberForm(request.POST)
     return render(request, 'bookings/leaving_form.html', {'form':form})
 
 
 
-class GroupInfo(DetailView):
-    model=Bookings
-    context_object_name='booking'
+def  grp_info(request,pk):
+    context={}
+    context['custom']=Bookings.objects.get(pk=pk)
+    return render(request,'bookings/info.html',context)
 
 
 @login_required
@@ -118,19 +119,17 @@ def my_bookings(request):
 
 class BookingDeleteView(LoginRequiredMixin, DeleteView):
     model = Bookings
-    success_url=reverse_lazy('index')
+    success_url=reverse_lazy('register:user_dashboard')
     success_message='Booking has been deleted'
     def delete(self, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super().delete(*args,**kwargs)
 
 
-
-
 class BookingUpdateView(LoginRequiredMixin, UpdateView):
-    model=Bookings
-    form_class=BookingForm
-    success_url=reverse_lazy('index')
+    model = Bookings
+    form_class = BookingForm
+    success_url = reverse_lazy('register:user_dashboard')
 
 
 @login_required
@@ -160,6 +159,8 @@ def join_group(request, pk):
 
 
     else:
-        form=MemberForm()
-    return render(request, 'bookings/joining_form.html ', {'form':form})
+        context={}
+        context['form']=MemberForm()
+        context['custom']=Bookings.objects.get(pk=pk)
+    return render(request, 'bookings/joining_form.html ', context)
 
